@@ -1,0 +1,71 @@
+# Windows-specific
+Thumbs.db
+ehthumbs.db
+
+# User-specific files
+.idea/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core files
+bin/
+obj/
+
+# Rider
+.idea/
+
+# NPM packages
+node_modules/
+
+# ASP.NET Core & Visual Studio
+.vs2019/
+.vs2017/
+.vs2015/
+.vs/
+
+# JetBrains Rider IDE
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]istro/
+[Dd]ebugLinux/
+[Dd]ebugBuild/
+[Dd]ebugDll/
+
+# Publish files
+publish/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# User-specific configurations
+config/.user
+
+# .NET Core SDK version
+global.json
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# VS for Mac
+.vscode/
+.idea/
+
+# Logs
+logs/
+log/
