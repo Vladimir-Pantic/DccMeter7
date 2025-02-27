@@ -9,7 +9,6 @@ using Euronet.Audit.Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Euronet.Audit.Settings;
 using Euronet.Audit;
-//using Dtc.AccessSight.Web.Mvc.ModelBinders;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc;
 //using DccMeter.API.Settings;

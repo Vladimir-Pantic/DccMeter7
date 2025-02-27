@@ -14,7 +14,7 @@ namespace DccMeterAPI.Controllers
     [Route("api/v1/[controller]")]
     //[ApiController]
     [Audit]
-    [Authorize]
+    //[Authorize]
     public class UsersController : ControllerBase
     {
         private const string SOURCE = "DccMeter.Api.Users";

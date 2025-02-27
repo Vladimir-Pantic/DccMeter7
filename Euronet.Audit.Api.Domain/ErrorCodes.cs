@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Dtc.AccessSight.Audit.Api.Domain
+namespace Euronet.Audit.Api.Domain
 {
 	public enum ErrorCodes
 	{
