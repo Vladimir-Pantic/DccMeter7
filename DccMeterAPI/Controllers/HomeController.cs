@@ -27,5 +27,12 @@ namespace DccMeter.API.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("Audit")]
+        public IActionResult Audit()
+        {
+            return View();
+        }
     }
 }
