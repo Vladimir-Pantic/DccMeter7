@@ -1,8 +1,8 @@
 ﻿
 
 --Represents audit of the users' interactions with the system, as well as record of automated system actions.
-if not exists (select * from sys.tables where name = 'AuditLog'  and SCHEMA_NAME(schema_id) = 'dbo')
-create table dbo.AuditLog
+if not exists (select * from sys.tables where name = 'AuditLog'  and SCHEMA_NAME(schema_id) = 'logs')
+create table logs.AuditLog
 (
 	--These are standard Serilog columns.
 
