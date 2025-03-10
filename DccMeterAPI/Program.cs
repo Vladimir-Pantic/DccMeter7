@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 //using Euronet.Audit.Serilog;
 using Euronet.Api.Helpers;
-using Euronet.Audit.Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Euronet.Audit.Settings;
 using Euronet.Audit;

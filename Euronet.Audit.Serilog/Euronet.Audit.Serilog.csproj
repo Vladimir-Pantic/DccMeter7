@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Authors>Dtc</Authors>
     <Description>Dtc AccessSight Audit Serilog</Description>
     <Copyright>2020</Copyright>

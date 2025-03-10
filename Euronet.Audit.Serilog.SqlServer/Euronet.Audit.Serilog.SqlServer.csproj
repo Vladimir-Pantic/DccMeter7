@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Authors>Euronet</Authors>
     <Description>Euronet Audit SqlServer</Description>
     <Copyright>2025</Copyright>
@@ -16,7 +16,6 @@
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.6.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DccMeter.Api.2\Euronet.Audit.Serilog7\Euronet.Audit.Serilog.csproj" />
     <ProjectReference Include="..\Euronet.Audit\Euronet.Audit.csproj" />
     <ProjectReference Include="..\Euronet.System\Euronet.System.csproj" />
   </ItemGroup>

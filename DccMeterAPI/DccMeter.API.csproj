@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DccMeter.Api.2\Euronet.Audit.Serilog7\Euronet.Audit.Serilog.csproj" />
     <ProjectReference Include="..\DccMeter.Repository.SQLServer\DccMeter.Repository.SQLServer.csproj" />
     <ProjectReference Include="..\Euronet.Audit.Api.Domain\Euronet.Audit.Api.Domain.csproj" />
     <ProjectReference Include="..\Euronet.Audit.Serilog.SqlServer\Euronet.Audit.Serilog.SqlServer.csproj" />

@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euronet.Audit.Api.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euronet.Audit.Serilog.SqlServer", "..\Euronet.Audit.Serilog.SqlServer\Euronet.Audit.Serilog.SqlServer.csproj", "{2403D10D-5C87-41F0-81EE-E3315518A10F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euronet.Audit.Serilog", "Euronet.Audit.Serilog7\Euronet.Audit.Serilog.csproj", "{AB307904-3C43-4B12-8D4E-BE958E0005BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{2403D10D-5C87-41F0-81EE-E3315518A10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2403D10D-5C87-41F0-81EE-E3315518A10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2403D10D-5C87-41F0-81EE-E3315518A10F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB307904-3C43-4B12-8D4E-BE958E0005BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB307904-3C43-4B12-8D4E-BE958E0005BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB307904-3C43-4B12-8D4E-BE958E0005BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB307904-3C43-4B12-8D4E-BE958E0005BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

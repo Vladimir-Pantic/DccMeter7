@@ -6,7 +6,6 @@ using Serilog.Sinks.MSSqlServer;
 using System;
 
 using Euronet.Audit.Settings;
-using Euronet.Audit.Serilog;
 using Euronet.System.Extensions;
 using Euronet.System.Settings;
 

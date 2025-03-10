@@ -2,7 +2,7 @@
 using Euronet.Audit.Settings;
 using Euronet.Audit.SqlServer;
 using Euronet.Audit.Interfaces;
-using Euronet.Audit.Serilog;
+using Euronet.Audit;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
