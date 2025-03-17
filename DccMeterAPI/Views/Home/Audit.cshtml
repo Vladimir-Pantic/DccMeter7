@@ -1,8 +1,152 @@
-﻿<div>
-    <h1>
-        Audit
-    </h1>
+﻿
+<div>
+    @using Euronet.System.Settings;
+    @{
+        string version = Settings.Instance?.SwaggerSettings?.Version ?? "v1";
 
-    <p>Describe audit process and how to include it in the project</p>
+        var scheme = Context.Request.Scheme;
+
+        var defaultPageSize = 20;
+
+        var pageSizeLimit = 50;
+
+        var versionUrl = Context.Request.GetVersionedPrefix(false);
+
+        var schemaVersionUrl = Context.Request.GetVersionedPrefix();
+
+        string identityUrl = "localhost:7197";
+
+        string schemaIdentityUrl = scheme + "://" + identityUrl;
+
+        var apiName = "DCC Meter Api";
+    }
+    <div>
+
+
+        <p>Following text describes Audit principles and usage of the @apiName @version.</p>
+        <ul id="toc" class="in-content-list">
+            <li><a href="#basics" id="toc-basics">Audit Logging Mechanism</a></li>
+            <li><a href="#attribute" id="toc-attribute">Controller setup</a></li>
+            <li><a href="#dependencies" id="toc-dependencies">Dependecies</a></li>
+        </ul>
+
+    </div>
+
+
+    <h2>
+        <a id="basics" class="anchor" href="#basics" aria-hidden="true"></a>Audit Logging Mechanism
+    </h2>
+    <p>
+        The audit logging mechanism checks whether audit logging is enabled via the DisableAudit setting from
+        <code>AuditLogSettings</code>.
+
+        If audit logging is not disabled, it proceeds to set up the necessary configurations.
+    </p>
+
+    <h4>Audit Log Settings:</h4>
+    <ul class="in-content-list">
+        <li>The connection string for the database (<code>auditConnectionString</code>) is retrieved from <code>AuditLogSettings.ConnectionString</code>.</li>
+        <li>The global enrich options are configured to include the <code>ApplicationId</code>, <code>ApplicationName</code> and <code>ApplicationVersion</code> from the application's configuration and environment helpers.</li>
+    </ul>
+
+    <h4>Audit Database Settings:</h4>
+    <ul class="in-content-list">
+        <li>The database connection string, schema name, severity level, and table name for storing audit logs are set from the configuration options (<code>AuditLogSettings</code>).</li>
+        <li>The severity level for the audit log is defined as an enumeration <code>AuditLogSeverity</code>, which is set to the value from the configuration (<code>Severity</code>), e.g., <code>"Verbose"</code>.</li>
+    </ul>
+
+    <h4>Adding Audit Services:</h4>
+    <p>The <code>AddSqlServerSerilogAudit</code> method is called to configure SQL Server-based audit logging using Serilog. It is passed the audit settings and global enrich options to initialize the logging mechanism.</p>
+    <pre><code>
+                    #region Audit
+
+
+                    if (Settings.Instance.AuditLogSettings.DisableAudit == false)
+                    {
+                        Log.Information("Configuring Audit Log...");
+
+                        string auditConnectionString = Settings.Instance.AuditLogSettings.ConnectionString;
+
+                        GlobalEnrichOptions globalEnrichOptions = new GlobalEnrichOptions()
+                        {
+                            ApplicationId = ApplicationId = Settings.Instance.AppSettings.ApplicationId,
+                            ApplicationName = EnvironmentHelper.ApplicationName,
+                            ApplicationVersion = EnvironmentHelper.Version
+                        };
+
+                        AuditDbSettings settings = new AuditDbSettings()
+                        {
+                            ConnectionString = auditConnectionString, 
+                            DisableAudit = Settings.Instance.AuditLogSettings.DisableAudit, 
+                            SchemaName = Settings.Instance.AuditLogSettings.SchemaName,
+                            Severity = (AuditLogSeverity)Settings.Instance.AuditLogSettings.Severity,
+                            TableName = Settings.Instance.AuditLogSettings.TableName
+                        };
+
+                        builder.Services.AddSqlServerSerilogAudit(settings, globalEnrichOptions);
+
+                    }
+
+                     #endregion
+                </code></pre>
+    <h4>Configuration:</h4>
+    <p>The settings for the audit log are specified in a configuration file (<code>appsettings.json</code>):</p>
+    <pre><code>
+                    "AuditLogSettings": {
+                        "DisableAudit": false,
+                        "ConnectionString": "Server=hubp1-tdw-db2o;Database=DCCMeter_dev;Trusted_Connection=True;Integrated Security=true;TrustServerCertificate=True;",
+                        "TableName": "AuditLog",
+                        "SchemaName": "logs",
+                        "Severity": "Verbose"
+                    }
+                </code></pre>
+
+    <h5>Settings Explained:</h5>
+    <ul class="in-content-list">
+        <li><strong>DisableAudit:</strong> Determines whether audit logging is enabled or not.</li>
+        <li><strong>ConnectionString:</strong> Specifies the database connection string.</li>
+        <li><strong>TableName:</strong> Defines the table name for storing audit logs.</li>
+        <li><strong>SchemaName:</strong> Defines the schema where the audit logs will be stored.</li>
+        <li><strong>Severity:</strong> Sets the level of logging (e.g., <code>"Verbose"</code> for detailed logs).</li>
+    </ul>
+
+    <p>This setup ensures that audit logs are securely stored in a SQL Server database, with enriched application context and customizable logging severity.</p>
+
+    <h2>
+        <a id="attribute" class="anchor" href="attribute" aria-hidden="true"></a>Controller setup
+    </h2>
+    <p>
+        In the controller, the <span><code>[Audit]</code></span> attribute is used to log actions for tracking purposes.
+
+        If logging is needed only for certain methods within controller then attribute <span><code>[Audit]</code></span> should be written above those methods.
+    </p>
+    <h2>
+        <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"></a>Dependecies
+    </h2>
+    <p>
+        In order for Audit to work, we need to use classes from other projects.
+        We will do this by adding these projects to the dependencies as follows:
+        <ul>
+            <li>1. Right-click on the DccMeter.API project &rarr; <strong>Add</strong> &rarr; <strong>Project References</strong></li>
+            <li>2. Select the project we want to add as a dependency</li>
+            <li>3. Click <strong>OK</strong></li>
+        </ul>
+    </p>
+    <p>
+        The projects that need to be added to the dependency are:
+        <ul>
+            <li><p><code>Euronet.System</code></p></li>
+            <li><p><code>Euronet.Audit</code></li>
+            <li><p><code>Euronet.Audit.Serilog.SqlServer</code></p></li>
+            <li><p><code>Euronet.Audit.Api.Domain</code></p></li>
+        </ul>
+    </p>
+    <p>
+        The listed projects also depend on each other so that:
+        <ul>
+            <li><p><code>Euronet.Audit</code> project depends on <code>Euronet.System</code> so in project Euronet.Audit need to add Euronet.System in dependencies </p></li>
+            <li><p><code>Euronet.Audit.Serilog.SqlServer</code> depends on <code>Euronet.System</code>, <code>Euronet.Audit</code> so in project Euronet.Audit.Serilog.SqlServer need to add Euronet.System, Euronet.Audit in dependencies</p></li>
+        </ul>
+    </p>
 
 </div>
